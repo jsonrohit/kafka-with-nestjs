@@ -5,10 +5,12 @@ import { UserModule } from './user/user.module';
 import { KafkaService } from './services/kafka.service';
 import { PrismaService } from './prisma/prisma.service';
 
+
 @Module({
   imports: [UserModule],
   controllers: [AppController],
   providers: [AppService, KafkaService, PrismaService],
+  exports: [KafkaService, PrismaService]
 })
 export class AppModule {}
 

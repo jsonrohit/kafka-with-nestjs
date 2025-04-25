@@ -8,17 +8,17 @@ import { KafkaService } from 'src/services/kafka.service';
 export class UserResolver {
   constructor(private readonly userService: UserService, private readonly kafkaService: KafkaService) {}
 
-  @Mutation('location')
-  async updateLocation(
-    @Args('userId') userId: number,
-    @Args('latitude') latitude: number,
-    @Args('longitude') longitude: number
-  ) {
-    const location = await this.userService.updateLocation(userId, latitude, longitude);
-    // push to Kafka
-    await this.kafkaService.sendLocation(location);
-    return location;
-  }
+  // @Mutation('location')
+  // async updateLocation(
+  //   @Args('userId') userId: number,
+  //   @Args('latitude') latitude: number,
+  //   @Args('longitude') longitude: number
+  // ) {
+  //   const location = await this.userService.updateLocation(userId, latitude, longitude);
+  //   // push to Kafka
+  //   await this.kafkaService.sendLocation(location);
+  //   return location;
+  // }
 
   @Mutation('createUser')
   create(@Args('createUserInput') createUserInput: CreateUserInput) {
