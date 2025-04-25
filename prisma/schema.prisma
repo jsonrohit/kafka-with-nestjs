@@ -18,6 +18,8 @@ model User {
   id        Int      @id @default(autoincrement())
   name      String
   location  Location[]
+
+  @@map("user")
 }
 
 model Geofence {
@@ -26,6 +28,8 @@ model Geofence {
   latitude  Float
   longitude Float
   radius    Float   // in meters
+
+  @@map("geofence")
 }
 
 model Location {
@@ -35,4 +39,6 @@ model Location {
   longitude Float
   timestamp DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
+
+  @@map("location")
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { Kafka } from "kafkajs";
 import { PrismaService } from "src/prisma/prisma.service";
 
+
 // geofence.consumer.ts
 @Injectable()
 export class GeofenceConsumer {
@@ -16,7 +17,7 @@ export class GeofenceConsumer {
     await this.consumer.subscribe({ topic: 'location_updates' });
 
     await this.consumer.run({
-      eachMessage: async ({ message }) => {
+      eachMessage: async ({ message }:any) => {
         const location = JSON.parse(message.value.toString());
         await this.checkGeofence(location);
       }
@@ -24,17 +25,17 @@ export class GeofenceConsumer {
   }
 
   async checkGeofence(location) {
-    const geofences = await this.prisma.geofence.findMany();
-    for (const fence of geofences) {
-      const dist = this.calculateDistance(
-        location.latitude, location.longitude,
-        fence.latitude, fence.longitude
-      );
-      if (dist < fence.radius) {
-        console.log(`User ${location.userId} entered geofence ${fence.name}`);
-        // trigger alert
-      }
-    }
+    // const geofences = await this.prisma.geofence.findMany();
+    // for (const fence of geofences) {
+    //   const dist = this.calculateDistance(
+    //     location.latitude, location.longitude,
+    //     fence.latitude, fence.longitude
+    //   );
+    //   if (dist < fence.radius) {
+    //     console.log(`User ${location.userId} entered geofence ${fence.name}`);
+    //     // trigger alert
+    //   }
+    // }
   }
 
   calculateDistance(lat1, lon1, lat2, lon2) {

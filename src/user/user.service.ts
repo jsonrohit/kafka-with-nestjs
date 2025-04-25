@@ -6,23 +6,24 @@ import { PrismaService } from 'src/prisma/prisma.service';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {
+
   }
 
   async updateLocation(userId: number, latitude: number, longitude: number) {
     // Optional: Validate user exists
-    const user = await this.prisma.user.findUnique({ where: { id: userId } });
-    if (!user) {
-      throw new Error('User not found');
-    }
+    // const user = await this.prisma.user.findUnique({ where: { id: userId } });
+    // if (!user) {
+    //   throw new Error('User not found');
+    // }
 
     // Create a new location record
-    return this.prisma.location.create({
-      data: {
-        userId,
-        latitude,
-        longitude,
-      },
-    });
+    // return this.prisma.location.create({
+    //   data: {
+    //     userId,
+    //     latitude,
+    //     longitude,
+    //   },
+    // });
   }
 
   create(createUserInput: CreateUserInput) {
