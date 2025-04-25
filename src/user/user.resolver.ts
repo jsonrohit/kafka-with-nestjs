@@ -20,6 +20,8 @@ export class UserResolver {
   //   return location;
   // }
 
+  
+
   @Mutation('createUser')
   create(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.userService.create(createUserInput);
