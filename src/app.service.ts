@@ -27,7 +27,7 @@ export class AppService {
         }
       }
     )
-    return 'Hello World!';
+    return 'Check your project terminal or console';
   }
 
 }
